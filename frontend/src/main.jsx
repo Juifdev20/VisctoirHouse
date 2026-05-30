@@ -5,6 +5,14 @@ import App from './App';
 import './index.css';
 import { Toaster } from 'react-hot-toast';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('SW enregistré:', reg.scope))
+      .catch((err) => console.log('SW échec:', err));
+  });
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>

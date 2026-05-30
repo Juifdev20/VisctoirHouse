@@ -1,0 +1,25 @@
+{
+  "name": "La Victoire House — Gestion des Stocks",
+  "short_name": "Victoire House",
+  "description": "Système de gestion des stocks pour La Victoire House — Beni, Nord-Kivu, RDC",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B2B5C",
+  "theme_color": "#0B2B5C",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

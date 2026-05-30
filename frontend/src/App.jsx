@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/layout/Layout';
+import InstallPrompt from './components/InstallPrompt';
 
 // Pages
 import Login from './pages/Login';
@@ -82,6 +83,7 @@ export default function App() {
     <ThemeProvider>
       <AuthProvider>
         <AppRoutes />
+        <InstallPrompt />
       </AuthProvider>
     </ThemeProvider>
   );

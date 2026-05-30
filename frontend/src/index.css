@@ -131,3 +131,12 @@
 
 /* Transitions douces sur le changement de thème */
 *, *::before, *::after { transition-property: background-color, border-color, color; transition-duration: 150ms; transition-timing-function: ease; }
+
+/* Animation slide-up pour le prompt PWA */
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up {
+  animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
