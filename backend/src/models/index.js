@@ -1,11 +1,12 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+const isRemoteDB = process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('localhost');
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   logging: false,
   dialectOptions: {
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    ssl: isRemoteDB ? { require: true, rejectUnauthorized: false } : false
   }
 });
 
