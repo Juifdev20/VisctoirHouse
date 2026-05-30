@@ -4,8 +4,10 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved) return saved === 'dark';
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+    } catch {}
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
@@ -13,11 +15,12 @@ export const ThemeProvider = ({ children }) => {
     const root = document.documentElement;
     if (isDark) {
       root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
     }
+    try {
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    } catch {}
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(d => !d);

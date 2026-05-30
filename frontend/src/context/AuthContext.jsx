@@ -8,14 +8,21 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
+    let token = null;
+    let userData = null;
+    try {
+      token = localStorage.getItem('token');
+      userData = localStorage.getItem('user');
+    } catch {}
     if (token && userData) {
       setUser(JSON.parse(userData));
       // Vérification token valide
       authAPI.me()
         .then(res => setUser(res.data.user))
-        .catch(() => { localStorage.clear(); setUser(null); })
+        .catch(() => {
+          try { localStorage.clear(); } catch {}
+          setUser(null);
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
@@ -25,16 +32,20 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, motDePasse) => {
     const res = await authAPI.login({ email, mot_de_passe: motDePasse });
     const { token, user: userData } = res.data;
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
+    try {
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(userData));
+    } catch {}
     setUser(userData);
     return userData;
   };
 
   const logout = async () => {
     try { await authAPI.logout(); } catch {}
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    try {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    } catch {}
     setUser(null);
   };
 
@@ -43,7 +54,9 @@ export const AuthProvider = ({ children }) => {
   const updateUser = (newUserData) => {
     const updated = { ...user, ...newUserData };
     setUser(updated);
-    localStorage.setItem('user', JSON.stringify(updated));
+    try {
+      localStorage.setItem('user', JSON.stringify(updated));
+    } catch {}
   };
 
   return (
