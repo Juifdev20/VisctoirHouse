@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    margin: 0;
+    padding: 0;
+  }
+  .dark body {
+    background-color: #0F172A;
+    color: #F1F5F9;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-navy text-white px-4 py-2.5 rounded-xl font-medium hover:opacity-90 active:scale-95 transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-lg;
+  }
+  .btn-secondary {
+    @apply bg-white dark:bg-gray-700 text-navy dark:text-gray-100 border border-gray-200 dark:border-gray-600 px-4 py-2.5 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-gray-600 active:scale-95 transition-all duration-200 flex items-center gap-2;
+  }
+  .btn-danger {
+    @apply bg-red-600 text-white px-4 py-2.5 rounded-xl font-medium hover:bg-red-700 active:scale-95 transition-all duration-200 flex items-center gap-2;
+  }
+  .btn-success {
+    @apply bg-emerald-600 text-white px-4 py-2.5 rounded-xl font-medium hover:bg-emerald-700 active:scale-95 transition-all duration-200 flex items-center gap-2;
+  }
+  .btn-gold {
+    @apply bg-gold-500 text-white px-4 py-2.5 rounded-xl font-medium hover:bg-gold-600 active:scale-95 transition-all duration-200 flex items-center gap-2 shadow-md;
+  }
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-card p-6 border border-gray-100 dark:border-gray-700;
+  }
+  .input-field {
+    @apply w-full border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy focus:border-transparent transition-all placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 dark:text-gray-100;
+  }
+  .select-field {
+    @apply w-full border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy focus:border-transparent transition-all bg-white dark:bg-gray-700 dark:text-gray-100;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5;
+  }
+  .badge-ok {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400;
+  }
+  .badge-alerte {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400;
+  }
+  .badge-rupture {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400;
+  }
+  .badge-info {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400;
+  }
+  .table-header {
+    @apply bg-navy text-white text-xs font-semibold uppercase tracking-wider py-3 px-4 text-left;
+  }
+  .table-row {
+    @apply border-b border-gray-50 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors;
+  }
+  .table-cell {
+    @apply py-3 px-4 text-sm text-gray-700 dark:text-gray-300;
+  }
+  .page-title {
+    @apply text-2xl font-bold text-navy dark:text-white font-poppins;
+  }
+  .section-title {
+    @apply text-lg font-semibold text-gray-800 dark:text-gray-100 font-poppins;
+  }
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+.dark ::-webkit-scrollbar-track { background: #1F2937; }
+.dark ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 3px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #6B7280; }
+
+/* Animation spinner */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { animation: spin 1s linear infinite; }
+
+/* Animation fade-in */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+
+/* Police Poppins pour les titres */
+.font-poppins { font-family: 'Poppins', sans-serif; }
+.font-inter { font-family: 'Inter', sans-serif; }
+
+/* =====================================================
+   DARK MODE — Corrections globales (couvre toutes pages)
+   ===================================================== */
+
+/* Textes gris → blancs/clairs en dark */
+.dark .text-gray-900 { color: #F9FAFB; }
+.dark .text-gray-800 { color: #F3F4F6; }
+.dark .text-gray-700 { color: #E5E7EB; }
+.dark .text-gray-600 { color: #D1D5DB; }
+.dark .text-gray-500 { color: #9CA3AF; }
+
+/* Navy devient bleu clair en dark (sinon illisible sur fond sombre) */
+.dark .text-navy { color: #60A5FA; }
+.dark .page-title, .dark .section-title { color: #F9FAFB; }
+
+/* Fonds gris clairs → sombres */
+.dark .bg-gray-50 { background-color: #1A2535; }
+.dark .bg-gray-100 { background-color: #1E293B; }
+
+/* Bordures → plus visibles */
+.dark .border-gray-100 { border-color: #374151; }
+.dark .border-gray-200 { border-color: #4B5563; }
+.dark hr { border-color: #374151; }
+
+/* Texte dans les tableaux */
+.dark table { color: #E5E7EB; }
+.dark td, .dark th:not(.table-header) { color: #E5E7EB; }
+
+/* Formulaires bg-gray-50 (ex: formulaire paiement) */
+.dark .rounded-2xl.bg-gray-50 { background-color: #1E293B; border-color: #374151; }
+
+/* Transitions douces sur le changement de thème */
+*, *::before, *::after { transition-property: background-color, border-color, color; transition-duration: 150ms; transition-timing-function: ease; }
